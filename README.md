@@ -1,8 +1,8 @@
 # homebrew-tap
 
-[![macOS (Intel)](https://github.com/justinjoy/homebrew-tap/actions/workflows/tests.yml/badge.svg?branch=main&label=macOS%20Intel)](https://github.com/justinjoy/homebrew-tap/actions/workflows/tests.yml?query=branch%3Amain)
-[![macOS (ARM)](https://github.com/justinjoy/homebrew-tap/actions/workflows/tests.yml/badge.svg?branch=main&label=macOS%20ARM)](https://github.com/justinjoy/homebrew-tap/actions/workflows/tests.yml?query=branch%3Amain)
-[![Linux](https://github.com/justinjoy/homebrew-tap/actions/workflows/tests.yml/badge.svg?branch=main&label=Linux)](https://github.com/justinjoy/homebrew-tap/actions/workflows/tests.yml?query=branch%3Amain)
+[![Intel](https://img.shields.io/github/actions/workflow/status/justinjoy/homebrew-tap/tests.yml?branch=main&label=intel&style=flat)](https://github.com/justinjoy/homebrew-tap/actions/workflows/tests.yml?query=branch%3Amain)
+[![ARM](https://img.shields.io/github/actions/workflow/status/justinjoy/homebrew-tap/tests.yml?branch=main&label=arm&style=flat)](https://github.com/justinjoy/homebrew-tap/actions/workflows/tests.yml?query=branch%3Amain)
+[![Linux](https://img.shields.io/github/actions/workflow/status/justinjoy/homebrew-tap/tests.yml?branch=main&label=linux&style=flat)](https://github.com/justinjoy/homebrew-tap/actions/workflows/tests.yml?query=branch%3Amain)
 
 A custom Homebrew tap providing `differential-dogs3`, a C library for differential-dogs3 join operators.
 
