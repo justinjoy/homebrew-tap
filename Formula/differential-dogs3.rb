@@ -17,20 +17,12 @@ class DifferentialDogs3 < Formula
       system "cargo", "build", "--release", "--lib"
       mkdir_p lib
       Dir["target/release/libdifferential_dogs3.{dylib,so,a}"].each do |f|
-        cp f, lib/ if File.exist?(f)
+        cp f, lib if File.exist?(f)
       end
     end
   end
 
   test do
-    test_rs = <<~RUST
-      fn main() {
-          println!("differential-dogs3 library successfully compiled");
-      }
-    RUST
-    (testpath/"test_build.rs").write test_rs
-    system "rustc", "--edition", "2021", testpath/"test_build.rs", "-L", lib,
-           "-o", testpath/"test_build"
-    assert File.exist?(testpath/"test_build")
+    assert_predicate lib/"libdifferential_dogs3.a", :exist?
   end
 end

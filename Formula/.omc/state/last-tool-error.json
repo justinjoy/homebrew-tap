@@ -1,0 +1,7 @@
+{
+  "tool_name": "Bash",
+  "tool_input_preview": "{\"command\":\"cd /opt/homebrew/Library/Taps/justinjoy/homebrew-tap && brew lgtm\",\"description\":\"Run lgtm from tap directory\"}",
+  "error": "Exit code 1\nFetching gem metadata from https://rubygems.org/.......\nFetching bigdecimal 4.0.1\nFetching benchmark 0.5.0\nFetching coderay 1.1.3\nFetching csv 3.3.5\nInstalling csv 3.3.5\nInstalling coderay 1.1.3\nInstalling bigdecimal 4.0.1 with native extensions\nInstalling benchmark 0.5.0\nFetching diff-lcs 1.6.2\nInstalling diff-lcs 1.6.2\nFetching docile 1.4.1\nInstalling docile 1.4.1\nFetching erubi 1.13.1\nInstalling erubi 1.13.1\nFetching hana 1.3.7\nFetching io-console 0.8.2\nInstalling hana 1.3.7\nFetch...",
+  "timestamp": "2026-02-24T15:20:38.427Z",
+  "retry_count": 2
+}
