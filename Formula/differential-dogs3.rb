@@ -23,6 +23,6 @@ class DifferentialDogs3 < Formula
   end
 
   test do
-    assert_predicate lib/"libdifferential_dogs3.a", :exist?
+    assert_path_exists lib/"libdifferential_dogs3.a"
   end
 end
