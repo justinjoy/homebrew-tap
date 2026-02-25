@@ -1,5 +1,9 @@
 # homebrew-tap
 
+[![macOS (Intel)](https://github.com/justinjoy/homebrew-tap/actions/workflows/tests.yml/badge.svg?branch=main&label=macOS%20Intel)](https://github.com/justinjoy/homebrew-tap/actions/workflows/tests.yml?query=branch%3Amain)
+[![macOS (ARM)](https://github.com/justinjoy/homebrew-tap/actions/workflows/tests.yml/badge.svg?branch=main&label=macOS%20ARM)](https://github.com/justinjoy/homebrew-tap/actions/workflows/tests.yml?query=branch%3Amain)
+[![Linux](https://github.com/justinjoy/homebrew-tap/actions/workflows/tests.yml/badge.svg?branch=main&label=Linux)](https://github.com/justinjoy/homebrew-tap/actions/workflows/tests.yml?query=branch%3Amain)
+
 A custom Homebrew tap providing `differential-dogs3`, a C library for differential-dogs3 join operators.
 
 The `differential-dogs3` library is part of the [TimelyDataflow/differential-dataflow](https://github.com/TimelyDataflow/differential-dataflow) project and enables advanced join patterns in differential dataflow computations.
