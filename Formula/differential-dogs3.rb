@@ -13,13 +13,33 @@ class DifferentialDogs3 < Formula
   depends_on "rust" => :build
 
   def install
-    cd "dogsdogsdogs" do
-      system "cargo", "build", "--release", "--lib"
-      mkdir_p lib
-      Dir["target/release/libdifferential_dogs3.{dylib,so,a}"].each do |f|
-        cp f, lib if File.exist?(f)
+    mkdir_p lib
+    mkdir_p bin
+
+    # Build all packages using workspace
+    system "cargo", "build", "--release", "--workspace", "--features", "timely/getopts"
+
+    # Build plugin libraries (they use workspace target directory)
+    %w[degr_dist neighborhood random_graph reachability].each do |plugin|
+      cd "server/dataflows/#{plugin}" do
+        system "cargo", "build", "--release", "--lib"
       end
     end
+
+    # Copy libraries
+    Dir["target/release/libdifferential_dogs3.{dylib,so,a,rlib}"].each do |f|
+      cp f, lib
+    end
+    cp "target/release/libdifferential_dataflow.rlib", lib if
+      File.exist?("target/release/libdifferential_dataflow.rlib")
+    %w[degr_dist neighborhood random_graph reachability].each do |plugin|
+      cp "target/release/lib#{plugin}.dylib", lib if
+        File.exist?("target/release/lib#{plugin}.dylib")
+    end
+
+    # Copy binaries
+    cp "target/release/dd_server", bin if File.exist?("target/release/dd_server")
+    cp "target/release/doop", bin if File.exist?("target/release/doop")
   end
 
   test do
