@@ -19,7 +19,7 @@ class DifferentialDogs3 < Formula
     # Build all packages using workspace
     system "cargo", "build", "--release", "--workspace", "--features", "timely/getopts"
 
-    # Build plugin libraries (they use workspace target directory)
+    # Build plugin libraries
     %w[degr_dist neighborhood random_graph reachability].each do |plugin|
       cd "server/dataflows/#{plugin}" do
         system "cargo", "build", "--release", "--lib"
