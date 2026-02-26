@@ -14,32 +14,42 @@ class DifferentialDogs3 < Formula
 
   def install
     mkdir_p lib
-    mkdir_p bin
 
-    # Build all packages using workspace
-    system "cargo", "build", "--release", "--workspace", "--features", "timely/getopts"
+    # Build all libraries
+    system "cargo", "build", "--release", "--lib"
+    system "cargo", "build", "--release", "--lib", "-p", "differential-dataflow"
 
-    # Build plugin libraries
-    %w[degr_dist neighborhood random_graph reachability].each do |plugin|
-      cd "server/dataflows/#{plugin}" do
-        system "cargo", "build", "--release", "--lib"
-      end
-    end
-
-    # Copy libraries
+    # Copy libraries to lib directory
     Dir["target/release/libdifferential_dogs3.{dylib,so,a,rlib}"].each do |f|
       cp f, lib
     end
     cp "target/release/libdifferential_dataflow.rlib", lib if
       File.exist?("target/release/libdifferential_dataflow.rlib")
+
+    # Build and install binaries from server directory
+    cd "server" do
+      system "cargo", "install", "--bin", "dd_server", "--features", "timely/getopts",
+             *std_cargo_args
+
+      # Build plugin libraries
+      %w[degr_dist neighborhood random_graph reachability].each do |plugin|
+        cd "dataflows/#{plugin}" do
+          system "cargo", "build", "--release", "--lib"
+        end
+      end
+    end
+
+    # Copy plugin libraries from workspace target
     %w[degr_dist neighborhood random_graph reachability].each do |plugin|
       cp "target/release/lib#{plugin}.dylib", lib if
         File.exist?("target/release/lib#{plugin}.dylib")
     end
 
-    # Copy binaries
-    cp "target/release/dd_server", bin if File.exist?("target/release/dd_server")
-    cp "target/release/doop", bin if File.exist?("target/release/doop")
+    # Install doop binary from doop directory
+    cd "doop" do
+      system "cargo", "install", "--bin", "doop", "--features", "timely/getopts",
+             *std_cargo_args
+    end
   end
 
   test do
